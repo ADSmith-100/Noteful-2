@@ -1,0 +1,32 @@
+.note_item {
+  list-style: none;
+  border: solid 2px black;
+  text-align: left;
+  margin: 5px 0;
+  padding: 5px;
+  position: relative;
+}
+
+.noteName {
+  font-size: 35px;
+  padding: 5px;
+}
+
+.Date {
+  padding: 5px;
+}
+
+.delete {
+  padding: 5px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.note_list {
+  float: right;
+  margin-right: 400px;
+  width: 40%;
+
+  text-align: center;
+}
