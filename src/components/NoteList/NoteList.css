@@ -12,6 +12,11 @@
   padding: 5px;
 }
 
+.note_item:hover {
+  color: darkred;
+  cursor: pointer;
+}
+
 .Date {
   padding: 5px;
 }
@@ -29,4 +34,9 @@
   width: 40%;
 
   text-align: center;
+}
+
+.addNote {
+  font-size: 30px;
+  margin-right: 25px;
 }

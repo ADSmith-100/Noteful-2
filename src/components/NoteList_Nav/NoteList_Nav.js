@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { format } from "date-fns";
-import "./NoteList.css";
 
-export default class NoteList extends Component {
+export default class NoteListNav extends Component {
   render() {
+    console.log();
+
     const Notelist = this.props.notes.map((note, name) => (
       <li className="note_item" {...note} key={note.id} name={name}>
         <span className="noteName">{note.name}</span>
