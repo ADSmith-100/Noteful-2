@@ -3,6 +3,7 @@ import NoteList from "./components/NoteList/NoteList";
 import NoteListNav from "./components/NoteList_Nav/NoteList_Nav";
 import FolderList from "./components/FolderList/FolderList";
 import NoteData from "./components/NoteData/NoteData";
+import Note from "./components/Note/Note";
 import dummyStore from "./dummy-store";
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -34,13 +35,12 @@ export default class App extends React.Component {
                 render={(rprops) => <NoteList {...rprops} {...this.state} />}
               />
               <Route
-                path="/folder/:folderid"
+                path="/folder/:folderId"
                 render={(rprops) => (
-                  <NoteListNav
+                  <NoteList
                     {...rprops}
-                    notes={this.state.notes.filter(
-                      (note) =>
-                        note.folderid === Number(rprops.match.params.folderid)
+                    Snotes={this.state.notes.filter(
+                      (snote) => snote.folderId === rprops.match.params.folderId
                     )}
                   />
                 )}
@@ -49,8 +49,10 @@ export default class App extends React.Component {
                 path="/note/:noteid"
                 render={(rprops) => (
                   <NoteData
+                    {...rprops}
+                    {...this.state}
                     note={this.state.notes.find(
-                      (note) => note.id === Number(rprops.match.params.noteid)
+                      (note) => note.id === rprops.match.params.noteid
                     )}
                   />
                 )}

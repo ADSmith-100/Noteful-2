@@ -3,9 +3,13 @@ import { format } from "date-fns";
 import "./NoteList.css";
 
 export default class NoteList extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    const Notelist = this.props.notes.map((note, name) => (
-      <li className="note_item" {...note} key={note.id} name={name}>
+    console.log(this.props.match.params.folderId);
+    const Notelist = this.props.Snotes.map((note) => (
+      <li className="note_item" {...note} key={note.id}>
         <span className="noteName">{note.name}</span>
         <br></br>
         <br></br>
@@ -22,3 +26,7 @@ export default class NoteList extends Component {
     );
   }
 }
+
+NoteList.defaultProps = {
+  notes: [],
+};
