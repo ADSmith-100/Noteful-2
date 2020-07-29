@@ -1,27 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import "./NoteData.css";
+import { Link } from "react-router-dom";
 
-export default class NoteData extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default class NoteData extends Component {
   render() {
-    const Notelist = this.props.note.map((note) => (
-      <li className="note_item" {...note} key={note.id}>
-        <span className="noteName">{note.name}</span>
-        <br></br>
-        <br></br>
-        Modified
-        <span className="Date"> {note.modified}</span>
-        <button className="delete">Delete Note</button>
+    const { note } = this.props;
+    return note ? (
+      <div>
+        <h2>{note.name}</h2>
         <p>{note.content}</p>
-      </li>
-    ));
-    return (
-      <div className="note_list">
-        <ul>{Notelist}</ul>
-        <button className="addNote">Add Note</button>
+        <button onClick={() => this.props.history.goBack()}>Back</button>
       </div>
+    ) : (
+      ""
     );
   }
 }
+
+// Look how tj made the render with a const { note } destructured object = this.props
+//then it's a ternary condition to either display the info if the object has been retrieved or
+// nothing until then.  Could put a loading animation or something.

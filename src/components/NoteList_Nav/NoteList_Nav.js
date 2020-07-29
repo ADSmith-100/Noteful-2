@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default class NoteListNav extends Component {
   render() {
-    const Snotes = this.props.notes.filter((note) => note.folderid);
-
-    const Notelist = Snotes.map((MyNote, name) => (
+    const Notelist = this.props.Snotes.map((MyNote, name) => (
       <NavLink className="NoteLink" to={`/note/${MyNote.id}`}>
         <li className="note_item" {...MyNote} key={MyNote.id} name={name}>
           <span className="noteName">{MyNote.name}</span>

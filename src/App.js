@@ -15,6 +15,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    //why can't I get the fake api call to work here with setTimeout?
     this.setState(dummyStore);
   }
 
@@ -34,10 +35,10 @@ export default class App extends React.Component {
                 path="/"
                 render={(rprops) => <NoteList {...rprops} {...this.state} />}
               />
-              <Route
+              <Route //I need to understand how these work better
                 path="/folder/:folderId"
                 render={(rprops) => (
-                  <NoteList
+                  <NoteListNav //notelistNav goes here
                     {...rprops}
                     Snotes={this.state.notes.filter(
                       (snote) => snote.folderId === rprops.match.params.folderId
@@ -49,10 +50,9 @@ export default class App extends React.Component {
                 path="/note/:noteid"
                 render={(rprops) => (
                   <NoteData
-                    {...rprops}
-                    {...this.state}
+                    {...rprops} //can ...this.state interfere with this?
                     note={this.state.notes.find(
-                      (note) => note.id === rprops.match.params.noteid
+                      (idnote) => idnote.id === rprops.match.params.noteid //is this an object?
                     )}
                   />
                 )}
@@ -60,7 +60,10 @@ export default class App extends React.Component {
             </section>
           </main>
           <section className="folders_main">
-            <FolderList {...this.state} />
+            <Route
+              path={["/note/:noteid", "/folder/:folderId", "/"]}
+              render={(rprops) => <FolderList {...rprops} {...this.state} />}
+            />
           </section>
         </div>
       </BrowserRouter>
