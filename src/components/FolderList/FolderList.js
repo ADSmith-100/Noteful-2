@@ -5,7 +5,10 @@ import "./FolderList.css";
 
 export default class FolderList extends Component {
   static contextType = Context;
+
   render() {
+    console.log(this.context);
+
     let folderId = 0;
     if (this.props.match.params.noteid) {
       this.props.notes.forEach((note) => {
@@ -14,7 +17,8 @@ export default class FolderList extends Component {
         }
       });
     }
-    const list = this.props.folders.map(
+    const fList = Array.from(this.context.folders);
+    const list = fList.map(
       (folder, name) =>
         (folderId === 0 || folder.id === folderId) && (
           <NavLink
