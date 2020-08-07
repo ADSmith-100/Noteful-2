@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Context from "../../Context";
 import "./FolderList.css";
 
 export default class FolderList extends Component {
+  static contextType = Context;
   render() {
     let folderId = 0;
     if (this.props.match.params.noteid) {

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./NoteData.css";
+import Context from "../../Context";
 import { Link } from "react-router-dom";
 
 export default class NoteData extends Component {
+  static contextType = Context;
   render() {
     const { note } = this.props;
     return note ? (

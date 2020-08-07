@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Context from "../../Context";
 
 export default class NoteListNav extends Component {
+  static contextType = Context;
   render() {
     const Notelist = this.props.Snotes.map((MyNote, name) => (
       <NavLink className="NoteLink" to={`/note/${MyNote.id}`}>

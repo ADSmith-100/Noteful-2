@@ -1,15 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
+
 import { format } from "date-fns";
 import "./NoteList.css";
+import Context from "../../Context";
 
-export default class NoteList extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default class NoteList extends React.Component {
+  static contextType = Context;
   render() {
-    console.log(this.props.match.params.folderId);
-    const Notelist = this.props.notes.map((note) => (
+    //console.log(typeof this.context);
+    const NoteArray = Array.from(this.context.notes);
+    console.log(typeof NoteArray);
+    const Notelist = NoteArray.map((note) => (
       <NavLink className="NoteLink" to={`/note/${note.id}`}>
         <li className="note_item" {...note} key={note.id}>
           <span className="noteName">{note.name}</span>
