@@ -34,7 +34,6 @@ function deleteNoteRequest(noteId, cb) {
 export default class NoteList extends React.Component {
   static contextType = Context;
   render() {
-    //console.log(typeof this.context);
     const NoteArray = Array.from(this.context.notes); //finally worked!
     console.log(typeof NoteArray);
     const Notelist = NoteArray.map((note) => (
@@ -46,7 +45,7 @@ export default class NoteList extends React.Component {
         <br></br>
         <br></br>
         Modified
-        <span className="Date"> {note.modified}</span>
+        <span className="Date"> {new Date(note.modified).toDateString()}</span>
         <button
           className="delete"
           onClick={() => {
@@ -76,3 +75,4 @@ NoteList.defaultProps = {
 //Why couldn't I get the format from date-fns to work to fix the dates?
 //remove note.content just for testing
 //Do I put the NavLinks for the notes here?  Click on note and see content
+//.toDateString()}

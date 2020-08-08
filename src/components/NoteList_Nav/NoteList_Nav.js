@@ -13,7 +13,6 @@ export default class NoteListNav extends Component {
           <br></br>
           Modified
           <span className="Date"> {MyNote.modified}</span>
-          <button className="delete">Delete Note</button>
         </li>
       </NavLink>
     ));
