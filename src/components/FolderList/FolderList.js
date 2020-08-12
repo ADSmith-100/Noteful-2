@@ -7,8 +7,6 @@ export default class FolderList extends Component {
   static contextType = Context;
 
   render() {
-    console.log(this.context);
-
     let folderId = 0;
     if (this.props.match.params.noteid) {
       this.props.notes.forEach((note) => {
@@ -38,7 +36,13 @@ export default class FolderList extends Component {
     return (
       <div className="Folder_List">
         <ul>{list}</ul>
-        <button className="Add_Folder">Add Folder</button>
+        <NavLink
+          className="AddFolderLink"
+          to="/AddFolderForm"
+          aria-label="To Add Folder Form"
+        >
+          Add Folder
+        </NavLink>
       </div>
     );
   }
