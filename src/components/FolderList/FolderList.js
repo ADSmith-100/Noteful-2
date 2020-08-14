@@ -20,6 +20,7 @@ export default class FolderList extends Component {
       (folder, name) =>
         (folderId === 0 || folder.id === folderId) && (
           <NavLink
+            key={folder.id}
             className="NoteListNav__folder-link"
             to={`/folder/${folder.id}`}
           >

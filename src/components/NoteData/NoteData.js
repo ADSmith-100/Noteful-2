@@ -3,7 +3,7 @@ import Context from "../../Context";
 import propTypes from "prop-types";
 
 function deleteNoteRequest(noteId, cb) {
-  fetch("http://localhost:9090/notes" + `/${noteId}`, {
+  fetch(`http://localhost:9090/notes/${noteId}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",

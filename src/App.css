@@ -44,7 +44,8 @@ a.NoteListNav__folder-link {
   text-align: center;
 }
 
-a.NoteListNav__folder-link:hover {
+a.NoteListNav__folder-link:hover,
+a.NoteListNav__folder-link.active {
   text-shadow: 1px 1px 14px steelblue;
 }
 
@@ -54,7 +55,7 @@ a.NoteListNav__folder-link:hover {
   justify-content: space-between;
 }
 
-a.NoteLink {
+.note_item {
   border: 1px solid #ffc800;
   background-color: #f5da77;
   flex: 1;
@@ -95,4 +96,9 @@ a.AddNoteLink {
   .Folder_List {
     text-align: left;
   }
+}
+
+.deleteNav {
+  margin-left: 90%;
+  color: red;
 }

@@ -22,6 +22,7 @@ export default class App extends React.Component {
           notes: newNotes,
         });
       },
+
       addFolder: () => {
         fetch("http://localhost:9090/folders")
           .then((res) => res.json())

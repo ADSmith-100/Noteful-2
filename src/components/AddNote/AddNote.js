@@ -1,13 +1,16 @@
 import React from "react";
 import Context from "../../Context";
+import { withRouter } from "react-router-dom";
+
+let id = function () {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+
+  return "_" + Math.random().toString(36).substr(2, 9);
+};
 
 function addNoteRequest(name, folderId, content, callback) {
-  let id = function () {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
-    return "_" + Math.random().toString(36).substr(2, 9);
-  };
   fetch("http://localhost:9090/notes", {
     method: "POST",
     headers: {
@@ -34,14 +37,16 @@ function addNoteRequest(name, folderId, content, callback) {
     .then((data) => {
       console.log({ data, callback });
       callback(name);
-      alert("Your note was saved!");
+
+      //alert("Your note was saved!");
     })
+
     .catch((error) => {
       console.log(error);
     });
 }
 
-export default class AddNote extends React.Component {
+class AddNote extends React.Component {
   static contextType = Context;
   constructor(props) {
     super(props);
@@ -49,6 +54,7 @@ export default class AddNote extends React.Component {
       noteName: "",
       folderId: "",
       content: "",
+      id: "",
     };
   }
 
@@ -57,6 +63,7 @@ export default class AddNote extends React.Component {
     const { noteName, folderId, content } = this.state;
 
     addNoteRequest(noteName, folderId, content, this.context.addNote);
+    this.props.history.push(`/folder/${folderId}`);
   }
 
   updateNoteName(name) {
@@ -150,6 +157,8 @@ export default class AddNote extends React.Component {
     );
   }
 }
+
+export default withRouter(AddNote);
 
 //good example of how to populate dropdowns with data from state/context
 
