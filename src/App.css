@@ -18,10 +18,14 @@ ul {
   padding: 0;
 }
 
+h1 {
+  font-size: 69px;
+}
+
 header {
   text-align: center;
-  background-color: steelblue;
-  padding: 20px;
+  background-color: rgb(70, 180, 112);
+  padding: 2px;
 }
 
 a {
@@ -46,7 +50,7 @@ a.NoteListNav__folder-link {
 
 a.NoteListNav__folder-link:hover,
 a.NoteListNav__folder-link.active {
-  text-shadow: 1px 1px 14px steelblue;
+  text-shadow: 1px 1px 14px rgb(1, 97, 38);
 }
 
 .note_list ul {
@@ -56,8 +60,8 @@ a.NoteListNav__folder-link.active {
 }
 
 .note_item {
-  border: 1px solid #ffc800;
-  background-color: #f5da77;
+  border: 1px solid #7c0f57;
+  background-color: #fdb7e6;
   flex: 1;
   border-radius: 0px 0px 10px 0px;
   padding: 10px 20px;

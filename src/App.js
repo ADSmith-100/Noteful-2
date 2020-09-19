@@ -25,19 +25,8 @@ export default class App extends React.Component {
           .then((res) => res.json())
           .then((notes) => this.setState({ notes }));
 
-        console.log(newNotes);
+        //console.log(newNotes);
       },
-
-      //   const currentNotes = this.state.notes;
-      //   this.setState({
-      //     notes: currentNotes.filter((nt) => nt.id !== note_id),
-      //   });
-      //   fetch("http://localhost:8000/api/notes")
-      //     .then((res) => res.json())
-      //     .then((notes) => this.setState({ notes }));
-      // },
-
-      //
 
       addFolder: () => {
         fetch("http://localhost:8000/api/folders")

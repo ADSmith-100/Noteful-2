@@ -35,14 +35,14 @@ function addNoteRequest(name, folderid, content, callback) {
       return res.json();
     })
     .then((data) => {
-      console.log({ data, callback });
+      //console.log({ data, callback });
       callback(name);
 
       //alert("Your note was saved!");
     })
 
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     });
 }
 
@@ -134,10 +134,10 @@ class AddNote extends React.Component {
             defaultValue="None"
           >
             <option value="">None</option>
-            {FolderArray.map((folder) => (
+            {FolderArray.map((folder, index) => (
               <option
-                {...folder}
-                key={folder.id}
+                //{...folder}
+                key={index} //folder.id
                 value={folder.id}
                 name={folder.name}
                 text={folder.name}

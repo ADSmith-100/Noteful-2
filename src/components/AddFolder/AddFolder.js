@@ -29,11 +29,11 @@ function addFolderRequest(name, callback) {
       return res.json();
     })
     .then((data) => {
-      console.log({ data, callback });
+      //console.log({ data, callback });
       callback(name);
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     });
 }
 

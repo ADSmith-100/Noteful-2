@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Context from "../../Context";
-import propTypes from "prop-types";
+//import propTypes from "prop-types";
 
 function deleteNoteRequest(note_id, cb) {
   fetch(`http://localhost:8000/api/notes/${note_id}`, {
@@ -19,11 +19,11 @@ function deleteNoteRequest(note_id, cb) {
       }
     })
     .then((data) => {
-      console.log({ data });
+      //console.log({ data });
       cb(note_id);
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     });
 }
 
@@ -52,9 +52,9 @@ export default class NoteData extends Component {
   }
 }
 
-NoteData.propTypes = {
-  note: propTypes.object.isRequired,
-};
+// NoteData.propTypes = {
+//   note: propTypes.object.isRequired,
+// };
 
 // Look how tj made the render with a const { note } destructured object = this.props
 //then it's a ternary condition to either display the info if the object has been retrieved or
