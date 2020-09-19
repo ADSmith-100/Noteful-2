@@ -10,8 +10,8 @@ let id = function () {
   return "_" + Math.random().toString(36).substr(2, 9);
 };
 
-function addNoteRequest(name, folderId, content, callback) {
-  fetch("http://localhost:9090/notes", {
+function addNoteRequest(name, folderid, content, callback) {
+  fetch("http://localhost:8000/api/notes", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -20,7 +20,7 @@ function addNoteRequest(name, folderId, content, callback) {
       id: id,
       name: name,
       modified: new Date().toDateString(),
-      folderId: folderId,
+      folderid: folderid,
       content: content,
     }),
   })
@@ -51,25 +51,25 @@ class AddNote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      noteName: "",
-      folderId: "",
-      content: "",
       id: "",
+      name: "",
+      folderid: "",
+      content: "",
     };
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { noteName, folderId, content } = this.state;
+    const { name, folderid, content } = this.state;
 
-    addNoteRequest(noteName, folderId, content, this.context.addNote);
-    this.props.history.push(`/folder/${folderId}`);
+    addNoteRequest(name, folderid, content, this.context.addNote);
+    this.props.history.push(`/api/folder/${folderid}`);
   }
 
   updateNoteName(name) {
     if (name !== "") {
       this.setState({
-        noteName: name,
+        name: name,
       });
     }
   }
@@ -80,15 +80,15 @@ class AddNote extends React.Component {
     });
   }
 
-  updateFolderId(folderId) {
+  updateFolderId(folderid) {
     let result = this.context.folders.filter((obj) => {
-      return obj.name === folderId;
+      return obj.name === folderid;
     });
     if (result === "") {
       alert("Please choose a folder");
     } else {
       this.setState({
-        folderId: result[0].id,
+        folderid: result[0].id,
       });
     }
   }

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Context from "../../Context";
 import propTypes from "prop-types";
 
-function deleteNoteRequest(noteId, cb) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
+function deleteNoteRequest(note_id, cb) {
+  fetch(`http://localhost:8000/api/notes/${note_id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -17,11 +17,10 @@ function deleteNoteRequest(noteId, cb) {
           throw error;
         });
       }
-      return res.json();
     })
     .then((data) => {
       console.log({ data });
-      cb(noteId);
+      cb(note_id);
     })
     .catch((error) => {
       console.log(error);
@@ -40,7 +39,7 @@ export default class NoteData extends Component {
         <button
           className="delete"
           onClick={() => {
-            deleteNoteRequest(note.id, this.context.deleteNote);
+            deleteNoteRequest(Number(note.id), this.context.deleteNote);
           }}
         >
           {" "}

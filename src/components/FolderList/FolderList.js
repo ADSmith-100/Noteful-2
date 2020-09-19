@@ -7,22 +7,22 @@ export default class FolderList extends Component {
   static contextType = Context;
 
   render() {
-    let folderId = 0;
+    let folderid = 0;
     if (this.props.match.params.noteid) {
       this.props.notes.forEach((note) => {
-        if (note.id === this.props.match.params.noteid) {
-          folderId = note.folderId;
+        if (note.id === Number(this.props.match.params.noteid)) {
+          folderid = note.folderid;
         }
       });
     }
     const fList = Array.from(this.context.folders);
     const list = fList.map(
       (folder, name) =>
-        (folderId === 0 || folder.id === folderId) && (
+        (folderid === 0 || folder.id === folderid) && (
           <NavLink
             key={folder.id}
             className="NoteListNav__folder-link"
-            to={`/folder/${folder.id}`}
+            to={`/api/folder/${folder.id}`}
           >
             {folder.name}
             <li

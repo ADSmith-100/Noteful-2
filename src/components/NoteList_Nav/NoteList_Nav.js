@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import Context from "../../Context";
 import propTypes from "prop-types";
 
-function deleteNoteRequest(noteId, cb) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
+function deleteNoteRequest(note_id, cb) {
+  fetch(`http://localhost:8000/api/notes/${note_id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -18,11 +18,10 @@ function deleteNoteRequest(noteId, cb) {
           throw error;
         });
       }
-      return res.json();
     })
     .then((data) => {
-      console.log({ data });
-      cb(noteId);
+      console.log({ data, cb });
+      cb(note_id);
     })
     .catch((error) => {
       console.log(error);
@@ -43,7 +42,7 @@ export default class NoteListNav extends Component {
           {" "}
           X
         </button>
-        <NavLink className="NoteLink" to={`/note/${note.id}`}>
+        <NavLink className="NoteLink" to={`/api/notes/${note.id}`}>
           {" "}
           <p className="noteName">{note.name}</p>{" "}
           <span className="Date">

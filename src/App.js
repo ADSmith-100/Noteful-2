@@ -16,20 +16,36 @@ export default class App extends React.Component {
     this.state = {
       notes: [],
       folders: [],
-      deleteNote: (noteId) => {
-        const newNotes = this.state.notes.filter((nt) => nt.id !== noteId);
+      deleteNote: (note_id) => {
+        const newNotes = this.state.notes.filter((nt) => nt.id !== note_id);
         this.setState({
           notes: newNotes,
         });
+        fetch("http://localhost:8000/api/notes")
+          .then((res) => res.json())
+          .then((notes) => this.setState({ notes }));
+
+        console.log(newNotes);
       },
 
+      //   const currentNotes = this.state.notes;
+      //   this.setState({
+      //     notes: currentNotes.filter((nt) => nt.id !== note_id),
+      //   });
+      //   fetch("http://localhost:8000/api/notes")
+      //     .then((res) => res.json())
+      //     .then((notes) => this.setState({ notes }));
+      // },
+
+      //
+
       addFolder: () => {
-        fetch("http://localhost:9090/folders")
+        fetch("http://localhost:8000/api/folders")
           .then((res) => res.json())
           .then((folders) => this.setState({ folders }));
       },
       addNote: () => {
-        fetch("http://localhost:9090/notes")
+        fetch("http://localhost:8000/api/notes")
           .then((res) => res.json())
           .then((notes) => this.setState({ notes }));
       },
@@ -37,11 +53,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:9090/folders")
+    fetch("http://localhost:8000/api/folders")
       .then((res) => res.json())
       .then((folders) => this.setState({ folders }));
 
-    fetch("http://localhost:9090/notes")
+    fetch("http://localhost:8000/api/notes")
       .then((res) => res.json())
       .then((notes) => this.setState({ notes }));
   }
@@ -59,7 +75,7 @@ export default class App extends React.Component {
             <main>
               <section className="folders_main">
                 <Route
-                  path={["/note/:noteid", "/folder/:folderId", "/"]}
+                  path={["/api/note/:note_id", "/api/folder/:folder_id", "/"]}
                   render={(rprops) => (
                     <FolderList {...rprops} {...this.state} />
                   )}
@@ -68,24 +84,26 @@ export default class App extends React.Component {
               <section className="notes_main">
                 <Route exact path="/" component={NoteList} />
                 <Route
-                  path="/folder/:folderId"
+                  path="/api/folder/:folder_id"
                   render={(rprops) => (
                     <NoteListNav
                       {...rprops}
                       notes={this.state.notes.filter(
                         (snote) =>
-                          snote.folderId === rprops.match.params.folderId
+                          snote.folderid ===
+                          Number(rprops.match.params.folder_id)
                       )}
                     />
                   )}
                 />
                 <Route
-                  path="/note/:noteid"
+                  path="/api/notes/:note_id"
                   render={(rprops) => (
                     <NoteData
                       {...rprops}
                       note={this.state.notes.find(
-                        (idnote) => idnote.id === rprops.match.params.noteid
+                        (idnote) =>
+                          idnote.id === Number(rprops.match.params.note_id)
                       )}
                     />
                   )}

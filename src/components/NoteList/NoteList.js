@@ -7,7 +7,7 @@ export default class NoteList extends React.Component {
   static contextType = Context;
   render() {
     const Notelist = this.context.notes.map((note) => (
-      <NavLink key={note.id} className="NoteLink" to={`/note/${note.id}`}>
+      <NavLink key={note.id} className="NoteLink" to={`/api/notes/${note.id}`}>
         <li className="note_item" key={note.id}>
           <p className="noteName">{note.name}</p>
           <span className="Date">
